@@ -1,0 +1,66 @@
+# Ignore Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*.so
+*.pyo
+*.pyd
+*.swp
+.DS_Store
+
+# Ignore Virtual Environment
+venv/
+env/
+*.venv/
+Pipfile
+Pipfile.lock
+
+# Ignore Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Ignore Logs & Temporary Files
+logs/
+*.log
+nohup.out
+debug.log
+*.out
+*.tmp
+*.bak
+
+# Ignore Dataset Files (if large or sensitive)
+data/raw/
+data/processed/
+data/*.csv
+data/*.jsonl
+datasets/
+*.tar.gz
+*.zip
+
+# Ignore Model Checkpoints & Weights
+models/
+checkpoints/
+*.ckpt
+*.h5
+*.pth
+*.onnx
+
+# Ignore Results & Reports
+results/*.json
+results/*.csv
+results/*.txt
+
+# Ignore IDE & Editor Files
+.vscode/
+.idea/
+*.iml
+
+# Ignore System Files
+Thumbs.db
+Desktop.ini
+
+# Ignore Large or Backup Files
+*.bak
+*.old
+*.orig
+
+
+results/*.json

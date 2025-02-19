@@ -1,0 +1,35 @@
+# Core Dependencies
+numpy==1.23.5
+pandas==1.5.3
+scikit-learn==1.2.2
+torch==2.4.1
+torchvision==0.19.1
+transformers==4.36.1
+datasets==3.1.0
+
+# NLP Evaluation Models
+sentence-transformers==2.2.2
+openai==1.63.0
+accelerate==0.21.0  # Optimized transformer inference
+
+# Adversarial Robustness (TextAttack)
+textattack==0.3.10
+
+# Bias Mitigation (BBQ, Fairness Metrics)
+fairlearn==0.8.0
+seaborn==0.12.2
+
+# Deception & Truthfulness Detection (TruthfulQA, Contradiction Models)
+sentencepiece==0.1.99  # Required for some NLP models
+nltk==3.8.1
+spacy==3.6.1
+scipy==1.10.1
+
+# Miscellaneous Utilities
+tqdm==4.66.1  # Progress bar
+matplotlib==3.7.5  # Visualization
+ipython==8.12.3  # Interactive debugging
+jupyter==1.0.0  # For exploratory analysis
+
+# # If using GPU
+# cupy-cuda12x==12.0.0  # Only needed for CUDA acceleration
