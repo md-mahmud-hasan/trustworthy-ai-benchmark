@@ -36,7 +36,9 @@ datasets/
 *.zip
 
 # Ignore Model Checkpoints & Weights
-models/
+models/llama
+models/mistral
+
 checkpoints/
 *.ckpt
 *.h5
@@ -63,4 +65,5 @@ Desktop.ini
 *.orig
 
 
+.env
 results/*.json
