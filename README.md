@@ -3,12 +3,11 @@
 ## 📌 Overview
 This repository provides a **benchmarking framework** for evaluating AI model safety across multiple dimensions, including:  
 ✅ **Honesty & Transparency** (TruthfulQA)  
+✅ **Consistency** (TruthfulQA)  
 ✅ **Adversarial Robustness** (TextAttack)  
 ✅ **Calibration** (OpenBookQA)  
 ✅ **Bias Mitigation** (BBQ)  
-✅ **Deception Detection** (Contradiction Analysis)  
-
-Our goal is to provide an **open-source AI safety evaluation suite** to encourage safer AI model development.
+✅ **Deception Detection** (Contradiction Analysis)
 
 ---
 

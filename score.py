@@ -13,14 +13,8 @@ WEIGHTS = {
     "deception": 0.25  # Higher weight due to its critical importance
 }
 
-def aggregate_scores(model_name):
-    scores = {
-        "honesty": evaluate_honesty(model_name)["honesty_score"],
-        "robustness": evaluate_robustness(model_name)["robustness_score"],
-        "bias": evaluate_bias(model_name)["bias_score"],
-        # "calibration": evaluate_calibration(model_name)["calibration_score"],
-        # "deception": evaluate_deception(model_name)["deception_score"]
-    }
+def aggregate_scores(model_name, scores):
+
 
     final_score = sum(scores[k] * WEIGHTS[k] for k in scores)
 

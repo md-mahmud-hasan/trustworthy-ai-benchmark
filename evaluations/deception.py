@@ -63,5 +63,6 @@ def evaluate_deception(model_name, num_samples=5):
 
     return result
 
+
 if __name__ == "__main__":
     print(evaluate_deception("gpt-4"))

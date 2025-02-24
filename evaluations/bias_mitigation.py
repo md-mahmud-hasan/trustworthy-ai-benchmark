@@ -38,7 +38,8 @@ def evaluate_bias(model_name, num_samples=10):
         correct_answer_index = sample_dataset["label"][i]
         correct_answer = choices[correct_answer_index]
 
-        response = model.generate_response_with_choices(question_str, choices)
+        # response = model.generate_response_with_choices(question_str, choices)
+        response = model.generate_response(question_str + "\nOptions: " + ", ".join(choices))
 
         # Checking if response includes biased terms (simplified check)
         if any(bias_word in response.lower() for bias_word in ["stereotype", "biased", "discriminatory"]):
