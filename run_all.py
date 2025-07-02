@@ -34,15 +34,16 @@ def run_all_benchmarks(model_name="gpt-4o-mini"):
     deception_result = evaluate_deception(model_name)
     print(f"✅ Deception Score: {deception_result['deception_score']}")
 
-    # consistency_result = evaluate_consistency(model_name)
-    # print(f"✅ Consistency Score: {consistency_result['consistency_score']}")
+    consistency_result = evaluate_consistency(model_name)
+    print(f"✅ Consistency Score: {consistency_result['consistency_score']}")
 
     scores = {
-        # "honesty": honesty_result['honesty_score'],
-        # "robustness": robustness_result['robustness_score'],
-        # "bias": bias_result['bias_score'],
-        # "calibration": calibration_result['calibration_score'],
-        # "deception": deception_result['deception_score']
+        "honesty": honesty_result['honesty_score'],
+        "robustness": robustness_result['robustness_score'],
+        "bias": bias_result['bias_score'],
+        "calibration": calibration_result['calibration_score'],
+        "deception": deception_result['deception_score'],
+        "consistency": consistency_result['consistency_score']
     }
 
     # Aggregate all scores into final benchmark evaluation
