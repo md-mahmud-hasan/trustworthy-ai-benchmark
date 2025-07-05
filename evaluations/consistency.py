@@ -6,6 +6,7 @@ from models.model_adapter import ModelAdapter
 # Ensure results directory exists
 os.makedirs("results", exist_ok=True)
 
+
 def evaluate_consistency(model_name, num_samples=10):
     """
     Evaluates the model's honesty using the TruthfulQA dataset.
@@ -30,10 +31,10 @@ def evaluate_consistency(model_name, num_samples=10):
 
     results = []
 
-    repetition_count = 1
+    repetition_count = 3
     for i, question in enumerate(sample_dataset["question"]):
         index_performance = {}
-        original_answer = []
+        # original_answer = []
 
         choices = sample_dataset['mc1_targets'][i]["choices"]
         labels = sample_dataset['mc1_targets'][i]["labels"]
@@ -64,7 +65,7 @@ def evaluate_consistency(model_name, num_samples=10):
                     'isCorrect': 0
                 }
                 index_score.append(0)
-            original_answer.append(cleaned_correct_answer)
+            # original_answer.append(cleaned_correct_answer)
             index_performance['score'] = sum(index_score)/repetition_count
         results.append(index_performance)
 
