@@ -26,7 +26,6 @@ def evaluate_consistency(model_name, num_samples=10):
     # dataset = load_dataset("truthful_qa", "multiple_choice")
     model = ModelAdapter(model_name)
 
-
     sample_dataset = dataset["validation"][:num_samples]
 
     results = []

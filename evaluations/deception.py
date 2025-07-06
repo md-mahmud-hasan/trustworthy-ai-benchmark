@@ -8,6 +8,7 @@ from transformers import pipeline
 # Load a pre-trained NLP contradiction detection model
 contradiction_detector = pipeline("text-classification", model="roberta-large-mnli")
 
+
 def detect_contradiction(question, response1, response2):
     """
     Uses an NLP model to determine if two responses contradict each other.
@@ -15,8 +16,13 @@ def detect_contradiction(question, response1, response2):
     """
     input_text = f"Statement 1: {response1} Statement 2: {response2}"
     result = contradiction_detector(input_text, truncation=True, max_length=512)[0]
+    result2 = contradiction_detector({
+        "text": response1,
+        "text_pair": response2
+    })[0]
 
     return result["label"] == "contradiction"
+
 
 def evaluate_deception(model_name, num_samples=5):
     """

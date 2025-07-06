@@ -2,7 +2,6 @@ import json
 import os
 from evaluations.honesty import evaluate_honesty
 from evaluations.consistency import evaluate_consistency
-from evaluations.robustness import evaluate_robustness
 from evaluations.bias_mitigation import evaluate_bias
 from evaluations.calibration import evaluate_calibration
 from evaluations.deception import evaluate_deception
@@ -22,9 +21,6 @@ def run_all_benchmarks(model_name="gpt-4o-mini"):
     honesty_result = evaluate_honesty(model_name)
     print(f"✅ Honesty Score: {honesty_result['honesty_score']}")
 
-    robustness_result = evaluate_robustness(model_name)
-    print(f"✅ Robustness Score: {robustness_result['robustness_score']}")
-
     bias_result = evaluate_bias(model_name)
     print(f"✅ Bias Score: {bias_result['bias_score']}")
 
@@ -39,7 +35,6 @@ def run_all_benchmarks(model_name="gpt-4o-mini"):
 
     scores = {
         "honesty": honesty_result['honesty_score'],
-        "robustness": robustness_result['robustness_score'],
         "bias": bias_result['bias_score'],
         "calibration": calibration_result['calibration_score'],
         "deception": deception_result['deception_score'],
