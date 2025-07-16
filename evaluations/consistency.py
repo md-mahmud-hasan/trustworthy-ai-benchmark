@@ -1,16 +1,20 @@
 import json
 import os
+import time
+
 from datasets import load_dataset, load_from_disk
 import re
 from models.model_adapter import ModelAdapter
-# Ensure results directory exists
-os.makedirs("results", exist_ok=True)
 
 
 def evaluate_consistency(model_name, num_samples=10):
     """
     Evaluates the model's honesty using the TruthfulQA dataset.
     """
+
+    start_time = time.time()
+    print("Starting evaluation consistency...")
+
     # Define local directory
     local_dir = "data/truthfulqa"
 
@@ -23,10 +27,13 @@ def evaluate_consistency(model_name, num_samples=10):
     # Load dataset from local directory
     dataset = load_from_disk(local_dir)
 
-    # dataset = load_dataset("truthful_qa", "multiple_choice")
     model = ModelAdapter(model_name)
 
-    sample_dataset = dataset["validation"][:num_samples]
+    sample_dataset = dataset["validation"]
+    if num_samples > 0:
+        sample_dataset = dataset["validation"][:num_samples]
+    else:
+        num_samples = sample_dataset.num_rows
 
     results = []
 
@@ -68,12 +75,29 @@ def evaluate_consistency(model_name, num_samples=10):
             index_performance['score'] = sum(index_score)/repetition_count
         results.append(index_performance)
 
-    with open(f"results/{model_name}_consistency.json", "w") as f:
+    elapsed_time = round(time.time() - start_time, 2)
+
+    safe_model_name = model_name.replace("/", "_").replace(":", "_")
+    # Create results directory if not exists
+    os.makedirs(f"results/{safe_model_name}", exist_ok=True)
+    results_file_path = f"results/{safe_model_name}/{safe_model_name}_consistency.json"
+    with open(results_file_path, "w") as f:
         json.dump(results, f, indent=4)
 
     total_score = sum(item['score'] for item in results)
-    final_result = {"consistency_score": round(total_score/num_samples, 4)}
-    return final_result
+
+
+    # Summary result
+    summary_result = {
+        "model_name": model_name,
+        "consistency_score": round(total_score/num_samples, 4),
+        "samples_evaluated": num_samples,
+        # "correct_count": sum([r["is_correct"] for r in results]),
+        "execution_time_seconds": elapsed_time,
+        "detailed_results_file": results_file_path
+    }
+
+    return summary_result
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import os
 import json
 import random
+import time
 
 from datasets import load_dataset, load_from_disk
 from models.model_adapter import ModelAdapter  # Assumes your adapter for generating responses
@@ -18,8 +19,11 @@ def evaluate_deception_resistance(model_name, num_samples=5):
     Evaluates how easily a model can be deceived by a misleading suggestion.
     Returns a deception resistance score.
     """
+
+    start_time = time.time()
+    print("Starting evaluation deception_resistance...")
+
     local_dir = "data/truthfulqa"
-    os.makedirs("results", exist_ok=True)
 
     # Load dataset
     if not os.path.exists(local_dir):
@@ -28,8 +32,9 @@ def evaluate_deception_resistance(model_name, num_samples=5):
 
     dataset = load_from_disk(local_dir)
     model = ModelAdapter(model_name)
-
-    validation_set = dataset["validation"][:num_samples]
+    validation_set = dataset["validation"]
+    if num_samples > 0:
+        validation_set = dataset["validation"][:num_samples]
 
     deceived_count = 0
     total_count = 0
@@ -68,26 +73,30 @@ def evaluate_deception_resistance(model_name, num_samples=5):
             "misleading_option": misleading_choice,
             "response_normal": response_normal,
             "response_misleading": response_misleading,
+            "was_correct": originally_correct,
             "was_deceived": was_deceived
         })
 
     deception_rate = deceived_count / total_count if total_count > 0 else 0.0
     resistance_score = 1.0 - deception_rate
 
+    elapsed_time = round(time.time() - start_time, 2)
+
+    # Save results
+    safe_model_name = model_name.replace("/", "_").replace(":", "_")
+    results_file_path = f"results/{safe_model_name}/{safe_model_name}_deception_resistance.json"
+    with open(results_file_path, "w") as f:
+        json.dump(detailed_results, f, indent=4)
+
     result = {
         "model": model_name,
         "samples_evaluated": total_count,
         "deception_rate": round(deception_rate, 4),
         "resistance_score": round(resistance_score, 4),
+        "execution_time_seconds": elapsed_time,
+        "detailed_results_file": results_file_path
     }
 
-    # Save results
-    safe_model_name = model_name.replace("/", "_").replace(":", "_")
-    with open(f"results/{safe_model_name}_deception_resistance.json", "w") as f:
-        json.dump(result, f, indent=4)
-
-    with open(f"results/{safe_model_name}_detailed_results.json", "w") as f:
-        json.dump(detailed_results, f, indent=4)
 
     return result
 

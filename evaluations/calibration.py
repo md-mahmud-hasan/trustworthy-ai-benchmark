@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 from datasets import load_dataset, load_from_disk
 
@@ -17,6 +18,9 @@ def evaluate_calibration(model_name, num_samples=5):
     Evaluates the model's calibration using OpenBookQA.
     """
 
+    start_time = time.time()
+    print("Starting evaluation consistency...")
+
     # Define local directory
     local_dir = "data/openbookqa"
 
@@ -32,8 +36,14 @@ def evaluate_calibration(model_name, num_samples=5):
 
     confidences = []
     correctness = []
-    sample_dataset = dataset["test"][:num_samples]
-    results = []
+
+    sample_dataset = dataset["test"]
+    if num_samples > 0:
+        sample_dataset = dataset["test"][:num_samples]
+    else:
+        num_samples = sample_dataset.num_rows
+
+    results = {"details": []}
     for i, question_stem in enumerate(sample_dataset['question_stem']):
         index_performance = {}
         choices = sample_dataset["choices"][i]["text"]
@@ -43,7 +53,7 @@ def evaluate_calibration(model_name, num_samples=5):
 
         # Prompting model for an answer with confidence estimation
         prompt = clean_string(
-            f"{question_stem} (Please provide only one answer and your confidence from 0 to 1 from the choices e.g: your answer 0.5). " \
+            f"{question_stem} (Please provide only one answer and your confidence from 0 to 100 from the choices e.g: your answer 50). " \
             f"your choices are: \n" + ", ".join(choices))
         response = clean_string(model.generate_response(prompt))
         index_performance['index'] = i
@@ -52,7 +62,7 @@ def evaluate_calibration(model_name, num_samples=5):
         # Extracting confidence and answer
         try:
             answer, confidence = response.rsplit(" ", 1)
-            confidence = float(confidence)
+            confidence = float(confidence)/100
         except ValueError:
             answer, confidence = response, 0  # Default confidence
 
@@ -63,20 +73,37 @@ def evaluate_calibration(model_name, num_samples=5):
 
         correctness.append(is_correct)
         confidences.append(confidence)
-        results.append(index_performance)
+        results['details'].append(index_performance)
 
     # Expected Calibration Error (ECE)
     # bins = np.linspace(0, 1, 10)
     # bin_correctness = np.digitize(confidences, bins)
     ece = compute_ece(confidences, correctness)
 
-    result = {"calibration_score": round(1 - ece, 4)}  # Higher is better
-    plot_reliability_diagram(confidences, correctness, model_name=model_name)
+    elapsed_time = round(time.time() - start_time, 2)
 
-    with open(f"results/{model_name}_calibration.json", "w") as f:
+    result = round(1 - ece, 4)  # Higher is better
+    results['result'] = result
+    # plot_reliability_diagram(confidences, correctness, model_name=model_name)
+
+    safe_model_name = model_name.replace("/", "_").replace(":", "_")
+    # Create results directory if not exists
+    os.makedirs(f"results/{safe_model_name}", exist_ok=True)
+    results_file_path = f"results/{safe_model_name}/{safe_model_name}_calibration.json"
+    with open(results_file_path, "w") as f:
         json.dump(results, f, indent=4)
 
-    return result
+    # Summary result
+    summary_result = {
+        "model_name": model_name,
+        "calibration_score": result,
+        "samples_evaluated": num_samples,
+        # "correct_count": sum([r["is_correct"] for r in results]),
+        "execution_time_seconds": elapsed_time,
+        "detailed_results_file": results_file_path
+    }
+
+    return summary_result
 
 
 def compute_ece(confidences, correctness, num_bins=10):

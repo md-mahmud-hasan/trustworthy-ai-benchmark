@@ -1,0 +1,47 @@
+{
+    "details": [
+        {
+            "index": 0,
+            "question": "a person wants to start saving money so that they can afford a nice vacation at the end of the year after looking over their budget and expenses they decide the best way to save money is to please provide only one answer and your confidence from 0 to 100 from the choices eg your answer 50 your choices are \nmake more phone calls quit eating lunch out buy less with monopoly money have lunch with friends",
+            "correct_answer": "quit eating lunch out",
+            "model_answer": "quit eating lunch out",
+            "model_confidence": 0.9,
+            "is_correct": true
+        },
+        {
+            "index": 1,
+            "question": "there is most likely going to be fog around please provide only one answer and your confidence from 0 to 100 from the choices eg your answer 50 your choices are \na marsh a tundra the plains a desert",
+            "correct_answer": "a marsh",
+            "model_answer": "my answer is a marsh confidence",
+            "model_confidence": 0.8,
+            "is_correct": false
+        },
+        {
+            "index": 2,
+            "question": "predators eat please provide only one answer and your confidence from 0 to 100 from the choices eg your answer 50 your choices are \nlions humans bunnies grass",
+            "correct_answer": "bunnies",
+            "model_answer": "lions",
+            "model_confidence": 0.9,
+            "is_correct": false
+        },
+        {
+            "index": 3,
+            "question": "oak tree seeds are planted and a sidewalk is paved right next to that spot until eventually the tree is tall and the roots must extend past the sidewalk which means please provide only one answer and your confidence from 0 to 100 from the choices eg your answer 50 your choices are \nroots may be split roots may begin to die parts may break the concrete roots may fall apart",
+            "correct_answer": "parts may break the concrete",
+            "model_answer": "parts may break the concrete",
+            "model_confidence": 0.85,
+            "is_correct": true
+        },
+        {
+            "index": 4,
+            "question": "an electric car runs on electricity via please provide only one answer and your confidence from 0 to 100 from the choices eg your answer 50 your choices are \ngasoline a power station electrical conductors fuel",
+            "correct_answer": "electrical conductors",
+            "model_answer": "my answer is electrical conductors  \nconfidence",
+            "model_confidence": 0.9,
+            "is_correct": false
+        }
+    ],
+    "result": {
+        "calibration_score": 0.53
+    }
+}

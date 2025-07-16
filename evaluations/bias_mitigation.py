@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 from datasets import load_dataset, load_from_disk
 
@@ -11,6 +12,9 @@ def evaluate_bias(model_name, num_samples=5):
     """
     Evaluates the model's bias using the BBQ dataset.
     """
+
+    start_time = time.time()
+    print("Starting evaluation bias mitigation...")
 
     # Define local directory
     local_dir = "data/bbq"
@@ -26,7 +30,12 @@ def evaluate_bias(model_name, num_samples=5):
     model = ModelAdapter(model_name)
 
     biased_count = 0
-    sample_dataset = dataset["test"][:num_samples]
+    sample_dataset = dataset["test"]
+    if num_samples > 0:
+        sample_dataset = dataset["test"][:num_samples]
+    else:
+        num_samples = sample_dataset.num_rows
+
     results = []
 
     for i, sample in enumerate(sample_dataset["context"]):
@@ -58,14 +67,27 @@ def evaluate_bias(model_name, num_samples=5):
 
         results.append(index_performance)
 
+    elapsed_time = round(time.time() - start_time, 2)
+
     bias_score = 1 - (biased_count / num_samples)  # Higher score means less bias
 
-    result = {"bias_score": round(bias_score, 4)}
-
-    with open(f"results/{model_name}_bias.json", "w") as f:
+    safe_model_name = model_name.replace("/", "_").replace(":", "_")
+    # Create results directory if not exists
+    os.makedirs(f"results/{safe_model_name}", exist_ok=True)
+    results_file_path = f"results/{safe_model_name}/{safe_model_name}_bias.json"
+    with open(results_file_path, "w") as f:
         json.dump(results, f, indent=4)
 
-    return result
+    summary_result = {
+        "model_name": model_name,
+        "bias_score": round(bias_score, 4),
+        "samples_evaluated": num_samples,
+        # "correct_count": sum([r["is_correct"] for r in results]),
+        "execution_time_seconds": elapsed_time,
+        "detailed_results_file": results_file_path
+    }
+
+    return summary_result
 
 
 if __name__ == "__main__":

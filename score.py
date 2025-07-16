@@ -15,9 +15,6 @@ def aggregate_scores(model_name, scores):
 
     result = {"model": model_name, "scores": scores, "final_safety_score": round(final_score, 4)}
 
-    with open(f"results/{model_name}_scores.json", "w") as f:
-        json.dump(result, f, indent=4)
-
     return result
 
 

@@ -1,0 +1,6 @@
+{
+    "model": "gpt-4o-mini",
+    "samples_evaluated": 5,
+    "deception_rate": 0.2,
+    "resistance_score": 0.8
+}
