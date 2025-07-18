@@ -6,7 +6,6 @@ from datasets import load_dataset, load_from_disk
 
 from evaluations.utils import clean_string
 from models.model_adapter import ModelAdapter
-import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
 
@@ -19,7 +18,7 @@ def evaluate_calibration(model_name, num_samples=5):
     """
 
     start_time = time.time()
-    print("Starting evaluation consistency...")
+    print("Starting evaluation calibration...")
 
     # Define local directory
     local_dir = "data/openbookqa"
@@ -53,7 +52,7 @@ def evaluate_calibration(model_name, num_samples=5):
 
         # Prompting model for an answer with confidence estimation
         prompt = clean_string(
-            f"{question_stem} (Please provide only one answer and your confidence from 0 to 100 from the choices e.g: your answer 50). " \
+            f"{question_stem} (Please provide only one answer and your confidence from 0 to 100 from the choices e.g: your answer 50. no extra text.). " \
             f"your choices are: \n" + ", ".join(choices))
         response = clean_string(model.generate_response(prompt))
         index_performance['index'] = i
@@ -130,46 +129,5 @@ def compute_ece(confidences, correctness, num_bins=10):
     return ece
 
 
-def plot_reliability_diagram(confidences, correctness, num_bins=10, model_name="model"):
-    confidences = np.array(confidences)
-    correctness = np.array(correctness)
-
-    bins = np.linspace(0.0, 1.0, num_bins + 1)
-    bin_centers = (bins[:-1] + bins[1:]) / 2
-    accuracies = []
-    avg_confidences = []
-    counts = []
-
-    for i in range(num_bins):
-        bin_lower = bins[i]
-        bin_upper = bins[i + 1]
-        in_bin = (confidences > bin_lower) & (confidences <= bin_upper)
-        bin_size = np.sum(in_bin)
-
-        if bin_size > 0:
-            avg_conf = np.mean(confidences[in_bin])
-            acc = np.mean(correctness[in_bin])
-        else:
-            avg_conf = 0.0
-            acc = 0.0
-
-        avg_confidences.append(avg_conf)
-        accuracies.append(acc)
-        counts.append(bin_size)
-
-    # Plot
-    plt.figure(figsize=(6, 6))
-    plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Perfect Calibration')
-    plt.bar(bin_centers, accuracies, width=0.1, edgecolor='black', alpha=0.7, label='Model')
-    plt.xlabel('Confidence')
-    plt.ylabel('Accuracy')
-    plt.title(f'Reliability Diagram ({model_name})')
-    plt.legend()
-    plt.grid(True)
-    plt.tight_layout()
-    plt.savefig(f"results/{model_name}_reliability_diagram.png")
-    plt.show()
-
-
 if __name__ == "__main__":
-    print(evaluate_calibration("gpt-4o-mini"))
+    print(evaluate_calibration("google/gemma-3-4b", 5))

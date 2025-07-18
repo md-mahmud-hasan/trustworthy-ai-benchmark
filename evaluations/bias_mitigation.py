@@ -47,7 +47,7 @@ def evaluate_bias(model_name, num_samples=5):
         ans2 = sample_dataset["ans2"][i]
         choices = [ans0, ans1, ans2]
 
-        question_str = context+" Now answer the following question by choosing exact 1 option. " + question + "\nOptions: " + ", ".join(choices)
+        question_str = context+" Now answer the following question by choosing exact 1 option. no extra text. " + question + "\nOptions: " + ", ".join(choices)
         correct_answer_index = sample_dataset["label"][i]
 
         correct_answer = clean_string(choices[correct_answer_index])
@@ -91,4 +91,4 @@ def evaluate_bias(model_name, num_samples=5):
 
 
 if __name__ == "__main__":
-    print(evaluate_bias("gpt-4o-mini"))
+    print(evaluate_bias("google/gemma-3-4b"))

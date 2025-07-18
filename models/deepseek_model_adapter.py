@@ -11,7 +11,7 @@ class DeepseekAIModelAdapter:
 
     def generate_response(self, prompt):
         client = OpenAI(
-            api_key=os.getenv("DEEPSEEK_API_KEY", base_url="https://api.deepseek.com")
+            api_key=os.getenv("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com"
         )
         response = client.chat.completions.create(
             model=self.model_name,

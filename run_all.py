@@ -71,9 +71,12 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Run AI Safety Benchmark")
-    parser.add_argument("--model", type=str, default="gpt-4o-mini", help="Model name to evaluate")
+    # parser.add_argument("--model", type=str, default="gpt-4o-mini", help="Model name to evaluate")
+    parser.add_argument("--model", type=str, default="gpt-4.1-mini", help="Model name to evaluate")
     # parser.add_argument("--model", type=str, default="hermes-3-llama-3.2-3b", help="Model name to evaluate")
     # parser.add_argument("--model", type=str, default="DeepSeek-R1-Distill-Qwen-7B-GGUF/DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf", help="Model name to evaluate")
+    # parser.add_argument("--model", type=str, default="deepseek-chat", help="Model name to evaluate")
+    # parser.add_argument("--model", type=str, default="google/gemma-3-4b", help="Model name to evaluate")
 
     args = parser.parse_args()
     run_all_benchmarks(args.model, -1)

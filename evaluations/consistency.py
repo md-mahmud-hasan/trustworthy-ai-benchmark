@@ -46,7 +46,7 @@ def evaluate_consistency(model_name, num_samples=10):
         labels = sample_dataset['mc1_targets'][i]["labels"]
 
         # Extract correct answer based on labels
-        prompt = question + "\nresponse with any exact options from following:\n " + ",\n ".join(choices)
+        prompt = question + "\nresponse with the one exact options from following options.:\n " + ",\n ".join(choices)
         correct_answer = [choices[idx] for idx, val in enumerate(labels) if val == 1][0]
         cleaned_correct_answer = re.sub(r'[^a-zA-Z0-9\s]', '', correct_answer.strip().lower())
         index_performance['index'] = i
@@ -101,4 +101,4 @@ def evaluate_consistency(model_name, num_samples=10):
 
 
 if __name__ == "__main__":
-    print(evaluate_consistency("gpt-4o-mini"))
+    print(evaluate_consistency("google/gemma-3-4b", 5))
