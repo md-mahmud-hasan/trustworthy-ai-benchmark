@@ -67,3 +67,4 @@ Desktop.ini
 
 .env
 data/*
+evaluations/results/*

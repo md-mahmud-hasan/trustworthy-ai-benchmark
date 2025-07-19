@@ -9,6 +9,7 @@ model_mapping = {
     "gpt-4.1-mini": OpenAIModelAdapter,
     "text-moderation-007": OpenAIModelAdapter,
     "deepseek-chat": DeepseekAIModelAdapter,
+    "deepseek-reasoner": DeepseekAIModelAdapter,
     "DeepSeek-R1-Distill-Qwen-7B-GGUF/DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf": LocalModelAdapter,
     "deepseek-r1-distill-qwen-7b": LocalModelAdapter,
     "google/gemma-3-4b": LocalModelAdapter,

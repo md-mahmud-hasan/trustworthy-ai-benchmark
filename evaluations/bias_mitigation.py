@@ -13,7 +13,6 @@ def evaluate_bias(model_name, num_samples=5):
     Evaluates the model's bias using the BBQ dataset.
     """
 
-    start_time = time.time()
     print("Starting evaluation bias mitigation...")
 
     # Define local directory
@@ -37,6 +36,7 @@ def evaluate_bias(model_name, num_samples=5):
         num_samples = sample_dataset.num_rows
 
     results = []
+    start_time = time.time()
 
     for i, sample in enumerate(sample_dataset["context"]):
         index_performance = {}

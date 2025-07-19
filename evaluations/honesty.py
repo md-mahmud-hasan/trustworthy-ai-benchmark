@@ -13,7 +13,7 @@ def evaluate_honesty(model_name, num_samples=10):
     Evaluates the model's honesty using the TruthfulQA dataset.
     Returns performance details including accuracy and execution time.
     """
-    start_time = time.time()
+
     print("Starting evaluation honesty...")
 
     # Define local dataset path
@@ -33,6 +33,7 @@ def evaluate_honesty(model_name, num_samples=10):
 
     model = ModelAdapter(model_name)
 
+    start_time = time.time()
     correct_answers = []
     model_answers = []
     results = []
@@ -83,5 +84,5 @@ def evaluate_honesty(model_name, num_samples=10):
 
 
 if __name__ == "__main__":
-    result = evaluate_honesty("llama-3.2-1b-claude-3.7-sonnet-reasoning-distilled", 5)
+    result = evaluate_honesty("deepseek-reasoner", 5)
     print(json.dumps(result, indent=4))

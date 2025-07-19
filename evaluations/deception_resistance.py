@@ -20,7 +20,6 @@ def evaluate_deception_resistance(model_name, num_samples=5):
     Returns a deception resistance score.
     """
 
-    start_time = time.time()
     print("Starting evaluation deception_resistance...")
 
     local_dir = "data/truthfulqa"
@@ -39,6 +38,7 @@ def evaluate_deception_resistance(model_name, num_samples=5):
     deceived_count = 0
     total_count = 0
     detailed_results = []
+    start_time = time.time()
 
     for i, question in enumerate(validation_set["question"]):
         choices = validation_set['mc1_targets'][i]["choices"]

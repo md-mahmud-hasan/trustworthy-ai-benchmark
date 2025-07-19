@@ -12,7 +12,6 @@ def evaluate_consistency(model_name, num_samples=10):
     Evaluates the model's honesty using the TruthfulQA dataset.
     """
 
-    start_time = time.time()
     print("Starting evaluation consistency...")
 
     # Define local directory
@@ -37,7 +36,8 @@ def evaluate_consistency(model_name, num_samples=10):
 
     results = []
 
-    repetition_count = 3
+    repetition_count = os.getenv("CONSISTENCY_THRESHOLD")
+    start_time = time.time()
     for i, question in enumerate(sample_dataset["question"]):
         index_performance = {}
         # original_answer = []

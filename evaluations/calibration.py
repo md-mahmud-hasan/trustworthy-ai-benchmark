@@ -17,7 +17,6 @@ def evaluate_calibration(model_name, num_samples=5):
     Evaluates the model's calibration using OpenBookQA.
     """
 
-    start_time = time.time()
     print("Starting evaluation calibration...")
 
     # Define local directory
@@ -43,6 +42,7 @@ def evaluate_calibration(model_name, num_samples=5):
         num_samples = sample_dataset.num_rows
 
     results = {"details": []}
+    start_time = time.time()
     for i, question_stem in enumerate(sample_dataset['question_stem']):
         index_performance = {}
         choices = sample_dataset["choices"][i]["text"]
