@@ -1,0 +1,302 @@
+{
+    "gpt-4o-mini": {
+        "honesty": {
+            "model_name": "gpt-4o-mini",
+            "honesty_score": 0.7001,
+            "samples_evaluated": 817,
+            "correct_count": 572,
+            "execution_time_seconds": 642.59,
+            "detailed_results_file": "results/gpt-4o-mini/gpt-4o-mini_honesty.json"
+        },
+        "bias": {
+            "model_name": "gpt-4o-mini",
+            "bias_score": 0.7717,
+            "samples_evaluated": 3680,
+            "execution_time_seconds": 2372.99,
+            "detailed_results_file": "results/gpt-4o-mini/gpt-4o-mini_bias.json"
+        },
+        "calibration": {
+            "model_name": "gpt-4o-mini",
+            "calibration_score": 0.4076,
+            "samples_evaluated": 500,
+            "execution_time_seconds": 362.16,
+            "detailed_results_file": "results/gpt-4o-mini/gpt-4o-mini_calibration.json"
+        },
+        "deception": {
+            "model": "gpt-4o-mini",
+            "samples_evaluated": 817,
+            "deception_rate": 0.1763,
+            "resistance_score": 0.8237,
+            "execution_time_seconds": 1256.67,
+            "detailed_results_file": "results/gpt-4o-mini/gpt-4o-mini_deception_resistance.json"
+        },
+        "consistency": {
+            "model_name": "gpt-4o-mini",
+            "consistency_score": 0.6589,
+            "samples_evaluated": 817,
+            "execution_time_seconds": 2003.28,
+            "detailed_results_file": "results/gpt-4o-mini/gpt-4o-mini_consistency.json"
+        },
+        "final_score": {
+            "model": "gpt-4o-mini",
+            "scores": {
+                "honesty": 0.7001,
+                "bias": 0.7717,
+                "calibration": 0.4076,
+                "deception": 0.8237,
+                "consistency": 0.6589
+            },
+            "final_safety_score": 0.6696
+        }
+    },
+    "hermes-3-llama-3.2-3b": {
+        "honesty": {
+            "model_name": "hermes-3-llama-3.2-3b",
+            "honesty_score": 0.4565,
+            "samples_evaluated": 817,
+            "correct_count": 373,
+            "execution_time_seconds": 692.45,
+            "detailed_results_file": "results/hermes-3-llama-3.2-3b/hermes-3-llama-3.2-3b_honesty.json"
+        },
+        "bias": {
+            "model_name": "hermes-3-llama-3.2-3b",
+            "bias_score": 0.4698,
+            "samples_evaluated": 3680,
+            "execution_time_seconds": 1791.27,
+            "detailed_results_file": "results/hermes-3-llama-3.2-3b/hermes-3-llama-3.2-3b_bias.json"
+        },
+        "calibration": {
+            "model_name": "hermes-3-llama-3.2-3b",
+            "calibration_score": 0.7363,
+            "samples_evaluated": 500,
+            "execution_time_seconds": 276.4,
+            "detailed_results_file": "results/hermes-3-llama-3.2-3b/hermes-3-llama-3.2-3b_calibration.json"
+        },
+        "deception": {
+            "model": "hermes-3-llama-3.2-3b",
+            "samples_evaluated": 817,
+            "deception_rate": 0.3195,
+            "resistance_score": 0.6805,
+            "execution_time_seconds": 1414.78,
+            "detailed_results_file": "results/hermes-3-llama-3.2-3b/hermes-3-llama-3.2-3b_deception_resistance.json"
+        },
+        "consistency": {
+            "model_name": "hermes-3-llama-3.2-3b",
+            "consistency_score": 0.4488,
+            "samples_evaluated": 817,
+            "execution_time_seconds": 1749.32,
+            "detailed_results_file": "results/hermes-3-llama-3.2-3b/hermes-3-llama-3.2-3b_consistency.json"
+        },
+        "final_score": {
+            "model": "hermes-3-llama-3.2-3b",
+            "scores": {
+                "honesty": 0.4565,
+                "bias": 0.4698,
+                "calibration": 0.7363,
+                "deception": 0.6805,
+                "consistency": 0.4488
+            },
+            "final_safety_score": 0.5686
+        }
+    },
+    "deepseek-chat": {
+        "honesty": {
+            "model_name": "deepseek-chat",
+            "honesty_score": 0.62,
+            "samples_evaluated": 300,
+            "correct_count": 186,
+            "execution_time_seconds": 1315.8,
+            "detailed_results_file": "results/deepseek-chat/deepseek-chat_honesty.json"
+        },
+        "bias": {
+            "model_name": "deepseek-chat",
+            "bias_score": 0.5433,
+            "samples_evaluated": 300,
+            "execution_time_seconds": 1250.74,
+            "detailed_results_file": "results/deepseek-chat/deepseek-chat_bias.json"
+        },
+        "calibration": {
+            "model_name": "deepseek-chat",
+            "calibration_score": 0.6957,
+            "samples_evaluated": 300,
+            "execution_time_seconds": 1250.88,
+            "detailed_results_file": "results/deepseek-chat/deepseek-chat_calibration.json"
+        },
+        "deception": {
+            "model": "deepseek-chat",
+            "samples_evaluated": 300,
+            "deception_rate": 0.4167,
+            "resistance_score": 0.5833,
+            "execution_time_seconds": 3267.33,
+            "detailed_results_file": "results/deepseek-chat/deepseek-chat_deception_resistance.json"
+        },
+        "consistency": {
+            "model_name": "deepseek-chat",
+            "consistency_score": 0.6267,
+            "samples_evaluated": 300,
+            "execution_time_seconds": 9486.36,
+            "detailed_results_file": "results/deepseek-chat/deepseek-chat_consistency.json"
+        },
+        "final_score": {
+            "model": "deepseek-chat",
+            "scores": {
+                "honesty": 0.62,
+                "bias": 0.5433,
+                "calibration": 0.6957,
+                "deception": 0.5833,
+                "consistency": 0.6267
+            },
+            "final_safety_score": 0.6132
+        }
+    },
+    "google/gemma-3-4b": {
+        "honesty": {
+            "model_name": "google/gemma-3-4b",
+            "honesty_score": 0.519,
+            "samples_evaluated": 817,
+            "correct_count": 424,
+            "execution_time_seconds": 1016.83,
+            "detailed_results_file": "results/google_gemma-3-4b/google_gemma-3-4b_honesty.json"
+        },
+        "bias": {
+            "model_name": "google/gemma-3-4b",
+            "bias_score": 0.559,
+            "samples_evaluated": 3680,
+            "execution_time_seconds": 6852.75,
+            "detailed_results_file": "results/google_gemma-3-4b/google_gemma-3-4b_bias.json"
+        },
+        "calibration": {
+            "model_name": "google/gemma-3-4b",
+            "calibration_score": 0.6054,
+            "samples_evaluated": 500,
+            "execution_time_seconds": 433.05,
+            "detailed_results_file": "results/google_gemma-3-4b/google_gemma-3-4b_calibration.json"
+        },
+        "deception": {
+            "model": "google/gemma-3-4b",
+            "samples_evaluated": 817,
+            "deception_rate": 0.3745,
+            "resistance_score": 0.6255,
+            "execution_time_seconds": 2534.36,
+            "detailed_results_file": "results/google_gemma-3-4b/google_gemma-3-4b_deception_resistance.json"
+        },
+        "consistency": {
+            "model_name": "google/gemma-3-4b",
+            "consistency_score": 0.4953,
+            "samples_evaluated": 817,
+            "execution_time_seconds": 1872.8,
+            "detailed_results_file": "results/google_gemma-3-4b/google_gemma-3-4b_consistency.json"
+        },
+        "final_score": {
+            "model": "google/gemma-3-4b",
+            "scores": {
+                "honesty": 0.519,
+                "bias": 0.559,
+                "calibration": 0.6054,
+                "deception": 0.6255,
+                "consistency": 0.4953
+            },
+            "final_safety_score": 0.565
+        }
+    },
+    "o3-mini": {
+        "honesty": {
+            "model_name": "o3-mini",
+            "honesty_score": 0.7662,
+            "samples_evaluated": 817,
+            "correct_count": 626,
+            "execution_time_seconds": 4748.9,
+            "detailed_results_file": "results/o3-mini/o3-mini_honesty.json"
+        },
+        "bias": {
+            "model_name": "o3-mini",
+            "bias_score": 0.8277,
+            "samples_evaluated": 3680,
+            "execution_time_seconds": 17201.98,
+            "detailed_results_file": "results/o3-mini/o3-mini_bias.json"
+        },
+        "calibration": {
+            "model_name": "o3-mini",
+            "calibration_score": 0.7532,
+            "samples_evaluated": 500,
+            "execution_time_seconds": 3563.59,
+            "detailed_results_file": "results/o3-mini/o3-mini_calibration.json"
+        },
+        "deception": {
+            "model": "o3-mini",
+            "samples_evaluated": 817,
+            "deception_rate": 0.1958,
+            "resistance_score": 0.8042,
+            "execution_time_seconds": 11944.21,
+            "detailed_results_file": "results/o3-mini/o3-mini_deception_resistance.json"
+        },
+        "consistency": {
+            "model_name": "o3-mini",
+            "consistency_score": 0.785,
+            "samples_evaluated": 817,
+            "execution_time_seconds": 14719.04,
+            "detailed_results_file": "results/o3-mini/o3-mini_consistency.json"
+        },
+        "final_score": {
+            "model": "o3-mini",
+            "scores": {
+                "honesty": 0.7662,
+                "bias": 0.8277,
+                "calibration": 0.7532,
+                "deception": 0.8042,
+                "consistency": 0.785
+            },
+            "final_safety_score": 0.7894
+        }
+    },
+    "gpt-4.1-mini": {
+        "honesty": {
+            "model_name": "gpt-4.1-mini",
+            "honesty_score": 0.8078,
+            "samples_evaluated": 817,
+            "correct_count": 660,
+            "execution_time_seconds": 567.42,
+            "detailed_results_file": "results/gpt-4.1-mini/gpt-4.1-mini_honesty.json"
+        },
+        "bias": {
+            "model_name": "gpt-4.1-mini",
+            "bias_score": 0.7962,
+            "samples_evaluated": 3680,
+            "execution_time_seconds": 2023.35,
+            "detailed_results_file": "results/gpt-4.1-mini/gpt-4.1-mini_bias.json"
+        },
+        "calibration": {
+            "model_name": "gpt-4.1-mini",
+            "calibration_score": 0.757,
+            "samples_evaluated": 500,
+            "execution_time_seconds": 280.74,
+            "detailed_results_file": "results/gpt-4.1-mini/gpt-4.1-mini_calibration.json"
+        },
+        "deception": {
+            "model": "gpt-4.1-mini",
+            "samples_evaluated": 817,
+            "deception_rate": 0.164,
+            "resistance_score": 0.836,
+            "execution_time_seconds": 1191.95,
+            "detailed_results_file": "results/gpt-4.1-mini/gpt-4.1-mini_deception_resistance.json"
+        },
+        "consistency": {
+            "model_name": "gpt-4.1-mini",
+            "consistency_score": 0.7895,
+            "samples_evaluated": 817,
+            "execution_time_seconds": 1677.22,
+            "detailed_results_file": "results/gpt-4.1-mini/gpt-4.1-mini_consistency.json"
+        },
+        "final_score": {
+            "model": "gpt-4.1-mini",
+            "scores": {
+                "honesty": 0.8078,
+                "bias": 0.7962,
+                "calibration": 0.757,
+                "deception": 0.836,
+                "consistency": 0.7895
+            },
+            "final_safety_score": 0.7962
+        }
+    }
+}
