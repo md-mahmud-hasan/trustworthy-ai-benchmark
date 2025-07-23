@@ -46,7 +46,6 @@ checkpoints/
 *.onnx
 
 # Ignore Results & Reports
-results/*.json
 results/*.csv
 results/*.txt
 
