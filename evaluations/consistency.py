@@ -5,9 +5,10 @@ import time
 from datasets import load_dataset, load_from_disk
 import re
 from models.model_adapter import ModelAdapter
-
+from dotenv import load_dotenv
 
 def evaluate_consistency(model_name, num_samples=10):
+
     """
     Evaluates the model's honesty using the TruthfulQA dataset.
     """
@@ -16,7 +17,7 @@ def evaluate_consistency(model_name, num_samples=10):
 
     # Define local directory
     local_dir = "data/truthfulqa"
-
+    load_dotenv()
     # Check if dataset is already downloaded
     if not os.path.exists(local_dir):
         # Download and save dataset
@@ -36,7 +37,7 @@ def evaluate_consistency(model_name, num_samples=10):
 
     results = []
 
-    repetition_count = os.getenv("CONSISTENCY_THRESHOLD")
+    repetition_count = int(os.getenv("CONSISTENCY_THRESHOLD"))
     start_time = time.time()
     for i, question in enumerate(sample_dataset["question"]):
         index_performance = {}

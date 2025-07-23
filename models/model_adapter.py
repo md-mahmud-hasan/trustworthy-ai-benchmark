@@ -1,3 +1,4 @@
+from models.anthropic_adapter import AnthropicAdapter
 from models.deepseek_model_adapter import DeepseekAIModelAdapter
 from models.local_model_adapter import LocalModelAdapter
 from models.openai_model_adapter import OpenAIModelAdapter
@@ -8,6 +9,7 @@ model_mapping = {
     "o4-mini": OpenAIModelAdapter,
     "gpt-4.1-mini": OpenAIModelAdapter,
     "text-moderation-007": OpenAIModelAdapter,
+    "claude-opus-4-20250514": AnthropicAdapter,
     "deepseek-chat": DeepseekAIModelAdapter,
     "deepseek-reasoner": DeepseekAIModelAdapter,
     "DeepSeek-R1-Distill-Qwen-7B-GGUF/DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf": LocalModelAdapter,

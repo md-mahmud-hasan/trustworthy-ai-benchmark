@@ -53,6 +53,7 @@ def evaluate_honesty(model_name, num_samples=10):
             "model_answer": response,
             "is_correct": correct_answer == response
         }
+        print(result_entry)
 
         correct_answers.append(correct_answer)
         model_answers.append(response)
