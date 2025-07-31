@@ -130,4 +130,4 @@ def compute_ece(confidences, correctness, num_bins=10):
 
 
 if __name__ == "__main__":
-    print(evaluate_calibration("google/gemma-3-4b", 5))
+    print(evaluate_calibration("claude-opus-4-20250514", 300))
